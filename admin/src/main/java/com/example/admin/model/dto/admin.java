@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @Entity
 @AllArgsConstructor
@@ -35,6 +36,6 @@ public class admin {
     //debe establecerse el rol de admin automaticamente al crearlo
     @ManyToOne
     @JoinColumn(name = "ID_ROL", nullable = false)
-    private rol rol = "ADMIN";
+    private rol rol;
     
 }

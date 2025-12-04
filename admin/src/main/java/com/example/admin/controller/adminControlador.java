@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,17 +34,17 @@ public class adminControlador {
         return servicio.guardarAdmin(admin);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete")
     public void eliminarAdmin(@RequestParam int id) {
         servicio.eliminarAdmin(id);
     }
 
-    @GetMapping("/search/{id}")
+    @GetMapping("/search")
     public admin buscarAdmin(@RequestParam int id) {
         return servicio.buscarAdmin(id);
     }
 
-    @PutMapping("/update/{id}")    
+    @PutMapping("/update")    
     public admin actualizarAdmin(@RequestParam int id, @RequestBody admin adminActualizado) {
         return servicio.actualizarAdmin(id, adminActualizado);
     }
