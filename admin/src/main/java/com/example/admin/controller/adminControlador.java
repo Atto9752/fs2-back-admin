@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.admin.model.dto.admin;
 import com.example.admin.service.adminService;
@@ -22,28 +25,28 @@ public class adminControlador {
     @Autowired
     private adminService servicio;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<admin> listarAdmins() {
         return servicio.listarAdmins();
     }
 
-    @PostMapping
-    public admin guardarAdmin(admin admin) {
+    @PostMapping("/add")
+    public admin guardarAdmin(@RequestBody admin admin) {
         return servicio.guardarAdmin(admin);
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminarAdmin(int id) {
+    @DeleteMapping("/delete/{id}")
+    public void eliminarAdmin(@RequestParam int id) {
         servicio.eliminarAdmin(id);
     }
 
-    @GetMapping("/{id}")
-    public admin buscarAdmin(int id) {
+    @GetMapping("/search/{id}")
+    public admin buscarAdmin(@RequestParam int id) {
         return servicio.buscarAdmin(id);
     }
 
-    @PutMapping("/{id}")
-    public admin actualizarAdmin(int id, admin adminActualizado) {
+    @PutMapping("/update/{id}")    
+    public admin actualizarAdmin(@RequestParam int id, @RequestBody admin adminActualizado) {
         return servicio.actualizarAdmin(id, adminActualizado);
     }
 
