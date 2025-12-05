@@ -4,13 +4,27 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.admin.model.dto.admin;
 import com.example.admin.repository.adminRepositorio;
 
+
 @Service
 public class adminService {
+
+    @Value("${api.usuarios.url}")
+    private String usuariosApiUrl;
+
+    private final RestTemplate restTemplate;
+
+    public UserServiceCommunication(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    
 
     //para que se inicie junto con el repo y no se desconecten uno del otro
     @Autowired
@@ -18,6 +32,8 @@ public class adminService {
 
     @Autowired // inyeccion para buscar roles
     private rolRepositorio rolRepo;
+
+    private final WebClient webClientUsuarios;
 
     public List<admin> listarAdmins() {
         return repositorio.findAll();

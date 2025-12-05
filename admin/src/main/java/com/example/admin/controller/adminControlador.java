@@ -49,4 +49,16 @@ public class adminControlador {
         return servicio.actualizarAdmin(id, adminActualizado);
     }
 
+    @GetMapping("/clientes/all")
+    public Object listarUsuariosClientes(){
+        return servicio.listarUsuariosClientes();
+    }
+
+    @DeleteMapping("/clientes/delete")
+    public String eliminarUsuarioCliente(@RequestParam int id) {
+        servicio.eliminarUsuarioCliente(id);
+        return "Usuario cliente con ID " + id + " eliminado correctamente.";
+    }
+
+
 }
